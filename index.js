@@ -39,16 +39,27 @@ app.post('/register',(req,res) => {
       console.log(err);
     }
     passport.authenticate('local')(req,res,() => {
-    res.redirect('/');
+    res.redirect('/api/current_user');
     });
   });
 });
 
 //login route
 app.post('/login',passport.authenticate('local',{
-  successRedirect:'/',
+  successRedirect:'/api/current_user',
   failureRedirect:'/login'
 }),(req,res)=>{});
+
+//logout route
+app.get('/logout',(req,res) => {
+  req.logout();
+  res.redirect('/api/current_user')
+});
+
+//api current user route
+app.get('/api/current_user',(req,res) => {
+  res.send(req.user);
+})
 
 
 app.listen(3000);
