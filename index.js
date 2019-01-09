@@ -31,10 +31,18 @@ app.get('/',(req,res) => {
   return res.send('Hello backend');
 });
 
-app.post('/submit',(req,res) => {
-  // console.log(req.body);
-  res.redirect('/');
-})
+//register route
+app.post('/register',(req,res) => {
+  const newUser = new User({username: req.body.username});
+  User.register(newUser,req.body.password,(err,user) => {
+    if(err){
+      console.log(err);
+    }
+    passport.authenticate('local')(req,res,() => {
+    res.redirect('/');
+    });
+  });
+});
 
 
 app.listen(3000);
