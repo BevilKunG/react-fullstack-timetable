@@ -44,5 +44,11 @@ app.post('/register',(req,res) => {
   });
 });
 
+//login route
+app.post('/login',passport.authenticate('local',{
+  successRedirect:'/',
+  failureRedirect:'/login'
+}),(req,res)=>{});
+
 
 app.listen(3000);
