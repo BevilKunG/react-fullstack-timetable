@@ -1,6 +1,65 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/User');
 
-app.get('/',(req,res) => res.send('Hello backend'));
+mongoose.connect('mongodb://localhost/react_fullstack_timetable');
+
+//App Config
+app.use(bodyParser.urlencoded({extended:true}));
+
+
+//Session Config
+app.use(require('express-session')({
+  secret: "cat session",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Passport Config
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//Routes
+app.get('/',(req,res) => {
+  return res.send('Hello backend');
+});
+
+//register route
+app.post('/register',(req,res) => {
+  const newUser = new User({username: req.body.username});
+  User.register(newUser,req.body.password,(err,user) => {
+    if(err){
+      console.log(err);
+    }
+    passport.authenticate('local')(req,res,() => {
+    res.redirect('/api/current_user');
+    });
+  });
+});
+
+//login route
+app.post('/login',passport.authenticate('local',{
+  successRedirect:'/api/current_user',
+  failureRedirect:'/login'
+}),(req,res)=>{});
+
+//logout route
+app.get('/logout',(req,res) => {
+  req.logout();
+  res.redirect('/api/current_user')
+});
+
+//api current user route
+app.get('/api/current_user',(req,res) => {
+  res.send(req.user);
+})
+
 
 app.listen(3000);
