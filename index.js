@@ -38,6 +38,7 @@ app.post('/register',(req,res) => {
   User.register(newUser,req.body.password,(err,user) => {
     if(err){
       console.log(err);
+      res.redirect('/getregister');
     }
     passport.authenticate('local')(req,res,() => {
     res.redirect('/');
@@ -47,14 +48,14 @@ app.post('/register',(req,res) => {
 
 //login route
 app.post('/login',passport.authenticate('local',{
-  successRedirect:'/api/current_user',
-  failureRedirect:'/login'
+  successRedirect:'/',
+  failureRedirect:'/getlogin'
 }),(req,res)=>{});
 
 //logout route
 app.get('/logout',(req,res) => {
   req.logout();
-  res.redirect('/api/current_user')
+  res.redirect('/')
 });
 
 //api current user route
