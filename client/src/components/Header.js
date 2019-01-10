@@ -1,9 +1,11 @@
 import React,{ Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
   render(){
+    // console.log(this.props.auth);
     return (
       <div className="ui menu">
         <Link className="item" to={"/"}>Home</Link>
@@ -16,4 +18,8 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = ({ auth }) => {
+  return {auth};
+}
+
+export default connect(mapStateToProps)(Header);
