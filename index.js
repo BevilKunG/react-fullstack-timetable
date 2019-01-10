@@ -40,7 +40,7 @@ app.post('/register',(req,res) => {
       console.log(err);
     }
     passport.authenticate('local')(req,res,() => {
-    res.redirect('/api/current_user');
+    res.redirect('/');
     });
   });
 });
