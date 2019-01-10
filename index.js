@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const keys = require('./config/keys');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
 
-mongoose.connect('mongodb://localhost/react_fullstack_timetable');
+mongoose.connect(keys.mongoURI);
 
 //App Config
 app.use(bodyParser.urlencoded({extended:true}));
@@ -37,23 +38,24 @@ app.post('/register',(req,res) => {
   User.register(newUser,req.body.password,(err,user) => {
     if(err){
       console.log(err);
+      res.redirect('/getregister');
     }
     passport.authenticate('local')(req,res,() => {
-    res.redirect('/api/current_user');
+    res.redirect('/');
     });
   });
 });
 
 //login route
 app.post('/login',passport.authenticate('local',{
-  successRedirect:'/api/current_user',
-  failureRedirect:'/login'
+  successRedirect:'/',
+  failureRedirect:'/getlogin'
 }),(req,res)=>{});
 
 //logout route
 app.get('/logout',(req,res) => {
   req.logout();
-  res.redirect('/api/current_user')
+  res.redirect('/')
 });
 
 //api current user route
@@ -61,5 +63,5 @@ app.get('/api/current_user',(req,res) => {
   res.send(req.user);
 })
 
-
-app.listen(3000);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);
