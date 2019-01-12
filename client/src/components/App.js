@@ -19,11 +19,13 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header/>
-            <Route path="/" component={()=><h2>Landing Page</h2>} exact/>
-            <Route path="/getregister" component={RegisterForm}/>
-            <Route path="/getlogin" component={LoginForm}/>
-            <Route path="/getcourses" component={Timetable} exact/>
-            <Route path="/courses/new" component={CourseForm} />
+            <div className="ui container">
+              <Route path="/" component={()=><h2>Landing Page</h2>} exact/>
+              <Route path="/getregister" component={RegisterForm}/>
+              <Route path="/getlogin" component={LoginForm}/>
+              <Route path="/getcourses" component={Timetable} exact/>
+              <Route path="/courses/new" component={CourseForm} />
+            </div>
           </div>
         </BrowserRouter>
       </div>
