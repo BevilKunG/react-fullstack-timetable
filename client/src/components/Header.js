@@ -4,7 +4,20 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
-  renderButton(){
+  renderLeftButton(){
+    switch(this.props.auth){
+      case null:
+        return;
+      case '':
+        return;
+      default:
+        return (
+          <Link className="item" to={"/courses"}>Timetable</Link>
+        );
+    }
+  }
+
+  renderRightButton(){
     switch(this.props.auth){
       case null:
         return;
@@ -29,7 +42,8 @@ class Header extends Component {
     return (
       <div className="ui menu">
         <Link className="item" to={"/"}>Home</Link>
-        {this.renderButton()}
+        {this.renderLeftButton()}
+        {this.renderRightButton()}
       </div>
     );
   }

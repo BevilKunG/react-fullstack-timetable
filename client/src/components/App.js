@@ -5,6 +5,7 @@ import { fetchUser } from '../actions';
 import Header from './Header';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
+import Timetable from './Timetable';
 
 class App extends Component {
   componentDidMount(){
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/" component={()=><h2>Landing Page</h2>} exact/>
             <Route path="/getregister" component={RegisterForm}/>
             <Route path="/getlogin" component={LoginForm}/>
+            <Route path="/courses" component={Timetable} exact/>
           </div>
         </BrowserRouter>
       </div>
