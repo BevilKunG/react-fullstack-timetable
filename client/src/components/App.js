@@ -6,6 +6,7 @@ import Header from './Header';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import Timetable from './Timetable';
+import CourseForm from './CourseForm';
 
 class App extends Component {
   componentDidMount(){
@@ -21,7 +22,8 @@ class App extends Component {
             <Route path="/" component={()=><h2>Landing Page</h2>} exact/>
             <Route path="/getregister" component={RegisterForm}/>
             <Route path="/getlogin" component={LoginForm}/>
-            <Route path="/courses" component={Timetable} exact/>
+            <Route path="/getcourses" component={Timetable} exact/>
+            <Route path="/courses/new" component={CourseForm} />
           </div>
         </BrowserRouter>
       </div>

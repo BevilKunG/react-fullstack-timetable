@@ -12,7 +12,7 @@ class Header extends Component {
         return;
       default:
         return (
-          <Link className="item" to={"/courses"}>Timetable</Link>
+          <Link className="item" to={"/getcourses"}>Timetable</Link>
         );
     }
   }
