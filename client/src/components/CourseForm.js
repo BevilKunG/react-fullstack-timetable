@@ -7,10 +7,10 @@ const CourseForm = () => {
       <input name="name" type="text" />
 
       <label>Duration</label>
-      <input name="time-start" type="time" />
-      <input name="time-end" type="time" />
+      <input name="timeStart" type="time" />
+      <input name="timeEnd" type="time" />
 
-      <label htmlFor="Place">Place</label>
+      <label htmlFor="place">Place</label>
       <input name="place" type="text" />
 
       <label htmlFor="instructor">Instructor</label>

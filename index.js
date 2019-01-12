@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
+const Course = require('./models/Course');
 
 mongoose.connect(keys.mongoURI);
 
@@ -62,6 +63,20 @@ app.get('/logout',(req,res) => {
 app.get('/api/current_user',(req,res) => {
   res.send(req.user);
 })
+
+//create course route
+app.post('/courses',(req,res) => {
+  const newCourse = new Course({
+    name:req.body.name,
+    timeStart:req.body.timeStart,
+    timeEnd:req.body.timeEnd,
+    place:req.body.place,
+    instructor:req.body.instructor,
+    author:req.user
+  });
+  newCourse.save();
+  res.redirect('/getcourses');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
