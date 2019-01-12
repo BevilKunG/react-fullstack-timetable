@@ -24,8 +24,8 @@ class Header extends Component {
       case '':
         return (
           <div className="ui right item">
-            <Link className="item" to={"/getregister"}>Sign Up</Link>
-            <Link className="item" to={"/getlogin"}>Sign In</Link>
+            <Link className="item" to="/getregister">Sign Up</Link>
+            <Link className="item" to="/getlogin">Sign In</Link>
           </div>
         );
       default:
@@ -41,7 +41,7 @@ class Header extends Component {
     // console.log(this.props.auth);
     return (
       <div className="ui menu">
-        <Link className="item" to={"/"}>Home</Link>
+        <Link className="item" to="/">Home</Link>
         {this.renderLeftButton()}
         {this.renderRightButton()}
       </div>
