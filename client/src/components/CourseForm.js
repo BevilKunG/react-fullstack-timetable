@@ -29,7 +29,7 @@ class CourseForm extends Component {
         </div>
 
         <div className="field">
-          {days.map(day => <div className="inline field">{this.renderCheckbox(day)}</div>)}
+          {days.map(day => <div className="inline field" key={day}>{this.renderCheckbox(day)}</div>)}
         </div>
 
         <div className="field">
