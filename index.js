@@ -66,16 +66,33 @@ app.get('/api/current_user',(req,res) => {
 
 //create course route
 app.post('/courses',(req,res) => {
+  let days = [];
+  if(req.body.sunday === 'on') days.push('sunday');
+  if(req.body.monday === 'on') days.push('monday');
+  if(req.body.tuesday === 'on') days.push('tuesday');
+  if(req.body.wednesday === 'on') days.push('wednesday');
+  if(req.body.thursday === 'on') days.push('thursday');
+  if(req.body.friday === 'on') days.push('friday');
+  if(req.body.saturday === 'on') days.push('saturday');
+
   const newCourse = new Course({
     name:req.body.name,
     timeStart:req.body.timeStart,
     timeEnd:req.body.timeEnd,
+    days:days,
     place:req.body.place,
     instructor:req.body.instructor,
     author:req.user
   });
   newCourse.save();
   res.redirect('/getcourses');
+});
+
+//api courses route
+app.get('/api/courses',(req,res) => {
+  Course.find({author:req.user},(err,courses) => {
+    res.send(courses);
+  });
 });
 
 const PORT = process.env.PORT || 5000;
