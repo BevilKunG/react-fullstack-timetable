@@ -88,5 +88,12 @@ app.post('/courses',(req,res) => {
   res.redirect('/getcourses');
 });
 
+//api courses route
+app.get('/api/courses',(req,res) => {
+  Course.find({author:req.user},(err,courses) => {
+    res.send(courses);
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
