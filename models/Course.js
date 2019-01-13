@@ -5,7 +5,7 @@ const courseSchema = new Schema({
   name:String,
   timeStart:String,
   timeEnd:String,
-  day:[String],
+  days:[String],
   place:String,
   instructor:String,
   author: {
