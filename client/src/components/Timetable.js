@@ -2,11 +2,12 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCourses } from '../actions';
+import DayRow from './DayRow';
 
 class Timetable extends Component {
    sunday = []
    monday = []
-   tueday = []
+   tuesday = []
    wednesday = []
    thursday = []
    friday = []
@@ -19,7 +20,7 @@ class Timetable extends Component {
   initialDayArray(){
     this.sunday = [];
     this.monday = [];
-    this.tueday = [];
+    this.tuesday = [];
     this.wednesday = [];
     this.thursday = [];
     this.friday = [];
@@ -35,8 +36,8 @@ class Timetable extends Component {
             this.sunday.push(course);break;
           case 'monday':
             this.monday.push(course);break;
-          case 'tueday':
-            this.tueday.push(course);break;
+          case 'tuesday':
+            this.tuesday.push(course);break;
           case 'wednesday':
             this.wednesday.push(course);break;
           case 'thursday':
@@ -54,21 +55,37 @@ class Timetable extends Component {
   const sortFn=(a,b) => parseInt(a.timeStart) - parseInt(b.timeStart);
   this.sunday.sort(sortFn);
   this.monday.sort(sortFn);
-  this.tueday.sort(sortFn);
+  this.tuesday.sort(sortFn);
   this.wednesday.sort(sortFn);
   this.thursday.sort(sortFn);
   this.friday.sort(sortFn);
   this.saturday.sort(sortFn);
 
   // console.log(this.monday);
-}
+  }
+
+  renderTimetable(){
+    return (
+      <div className="ui grid">
+        <DayRow courses={this.sunday} day="sunday"/>
+        <DayRow courses={this.monday} day="monday"/>
+        <DayRow courses={this.tuesday} day="tuesday"/>
+        <DayRow courses={this.wednesday} day="wednesday"/>
+        <DayRow courses={this.thursday} day="thursday"/>
+        <DayRow courses={this.friday} day="friday"/>
+        <DayRow courses={this.saturday} day="saturday"/>
+      </div>
+    );
+  }
+
   render(){
     // console.log(this.props.courses);
     this.classifyDay()
     return (
       <div>
         <h2>Timetable Page</h2>
-        <Link className="ui button" to="/courses/new">Add Course</Link>
+        {this.renderTimetable()}
+        <Link className="ui right floated button" to="/courses/new">Add Course</Link>
       </div>
     );
   }
