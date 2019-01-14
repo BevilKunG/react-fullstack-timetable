@@ -75,10 +75,17 @@ app.post('/courses',(req,res) => {
   if(req.body.friday === 'on') days.push('friday');
   if(req.body.saturday === 'on') days.push('saturday');
 
+  const time1 = req.body.timeStart
+  const timeStart = time1.split('').splice(0,2).join('') + time1.split('').splice(3,2).join('');
+
+  const time2 = req.body.timeEnd
+  const timeEnd = time2.split('').splice(0,2).join('') + time2.split('').splice(3,2).join('');
+
+
   const newCourse = new Course({
     name:req.body.name,
-    timeStart:req.body.timeStart,
-    timeEnd:req.body.timeEnd,
+    timeStart:timeStart,
+    timeEnd:timeEnd,
     days:days,
     place:req.body.place,
     instructor:req.body.instructor,
