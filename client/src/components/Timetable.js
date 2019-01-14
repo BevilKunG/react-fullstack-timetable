@@ -16,7 +16,18 @@ class Timetable extends Component {
     this.props.fetchCourses();
   }
 
+  initialDayArray(){
+    this.sunday = [];
+    this.monday = [];
+    this.tueday = [];
+    this.wednesday = [];
+    this.thursday = [];
+    this.friday = [];
+    this.saturday = [];
+  }
+
   classifyDay(){
+    this.initialDayArray();
     this.props.courses.forEach(course => {
       course.days.forEach(day => {
         switch(day){
@@ -39,8 +50,8 @@ class Timetable extends Component {
         }
       });
   });
-  
-  const sortFn=(a,b) => parseInt(b.timeStart) - parseInt(a.timeStart);
+
+  const sortFn=(a,b) => parseInt(a.timeStart) - parseInt(b.timeStart);
   this.sunday.sort(sortFn);
   this.monday.sort(sortFn);
   this.tueday.sort(sortFn);
@@ -49,7 +60,7 @@ class Timetable extends Component {
   this.friday.sort(sortFn);
   this.saturday.sort(sortFn);
 
-  // console.log(monday);
+  // console.log(this.monday);
 }
   render(){
     // console.log(this.props.courses);
