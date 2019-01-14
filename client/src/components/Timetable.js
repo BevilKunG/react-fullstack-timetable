@@ -8,8 +8,42 @@ class Timetable extends Component {
     this.props.fetchCourses();
   }
 
+  classifyDay(){
+    const sunday = [];
+    const monday = [];
+    const tueday = [];
+    const wednesday = [];
+    const thursday = [];
+    const friday = [];
+    const saturday = [];
+    this.props.courses.forEach(course => {
+      course.days.forEach(day => {
+        switch(day){
+          case 'sunday':
+            sunday.push(course);break;
+          case 'monday':
+            monday.push(course);break;
+          case 'tueday':
+            tueday.push(course);break;
+          case 'wednesday':
+            wednesday.push(course);break;
+          case 'thursday':
+            thursday.push(course);break;
+          case 'friday':
+            friday.push(course);break;
+          case 'saturday':
+            saturday.push(course);break;
+          default:
+            break;
+        }
+      });
+  });
+  monday.sort((a,b) => parseInt(b.timeStart) - parseInt(a.timeStart));
+  // console.log(monday);
+}
   render(){
-    console.log(this.props.courses);
+    // console.log(this.props.courses);
+    this.classifyDay()
     return (
       <div>
         <h2>Timetable Page</h2>
