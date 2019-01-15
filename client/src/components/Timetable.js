@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCourses } from '../actions';
+import TimeRow from './TimeRow';
 import DayRow from './DayRow';
 
 class Timetable extends Component {
@@ -67,6 +68,7 @@ class Timetable extends Component {
   renderTimetable(){
     return (
       <div className="ui grid">
+        <TimeRow />
         <DayRow courses={this.sunday} day="sunday"/>
         <DayRow courses={this.monday} day="monday"/>
         <DayRow courses={this.tuesday} day="tuesday"/>
