@@ -2,23 +2,72 @@ import React,{ Component } from 'react';
 
 class DayRow extends Component {
 
+  gridSizeStyle(gridUse){
+    switch(gridUse){
+      case 1: return 'one';
+      case 2: return 'two';
+      case 3: return 'three';
+      case 4: return 'four';
+      case 5: return 'five';
+      case 6: return 'six';
+      case 7: return 'seven';
+      case 8: return 'eight';
+      case 9: return 'nine';
+      case 10: return 'ten';
+      case 11: return 'eleven';
+      case 12: return 'twenty';
+      case 13: return 'thirteen';
+      case 14: return 'fourteen';
+      case 15: return 'fifteen';
+      default: return '';
+    }
+  }
+
   renderColumn(){
+    let currentDuration = '0800';
     return this.props.courses.map(course => {
+      //calculate grid size of course
+      let gridUse=0;
+      let hstart = parseInt(course.timeStart.split('').splice(0,2).join(''));
+      let mstart = parseInt(course.timeStart.split('').splice(3,2).join(''));
+      let hend = parseInt(course.timeEnd.split('').splice(0,2).join(''));
+      let mend = parseInt(course.timeEnd.split('').splice(3,2).join(''));
+      if(hend>hstart){
+          gridUse+=(hend-hstart)*2;
+      }
+      if(mend!==mstart) gridUse+= mend>mstart? 1:-1;
+      const gridSize = this.gridSizeStyle(gridUse);
+
+      //calculate grid size of space
+       gridUse=0;
+      let hcd = parseInt(currentDuration.split('').splice(0,2).join(''));
+      let mcd = parseInt(currentDuration.split('').splice(3,2).join(''));
+      if(hstart>hcd){
+        gridUse+=(hstart-hcd)*2;
+      }
+      if(mcd!==mstart) gridUse+= mstart>mcd? 1:-1;
+      const gridSpace = this.gridSizeStyle(gridUse);
+      currentDuration=course.timeEnd;
+
       return (
-        <div className="column" key={course._id}>
-        <h3>{course.name}</h3>
-        <h5>{course.place}</h5>
-        <h5>{course.instructor}</h5>
-        </div>
+        <>
+        {gridSpace!==''?<div className={`${gridSpace} wide column`}></div>:null}
+        <div className={`${gridSize} wide column`}  key={course._id} style={{backgroundColor:'orange',border:'1px solid black'}}>
+            <h3>{course.name}</h3>
+            <h5>{course.place}</h5>
+            <h5>{course.instructor}</h5>
+            </div>
+        </>
       );
     });
   }
 
   render(){
     // console.log(this.props);
+    if(this.props.courses.length === 0) return null;
     return (
       <div className="sixteen column row">
-        <div className="column">{this.props.day}</div>
+        <div className="column">{this.props.day.charAt(0).toUpperCase()+this.props.day.slice(1)}</div>
         {this.renderColumn()}
       </div>
     );

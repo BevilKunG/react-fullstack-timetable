@@ -12,6 +12,7 @@ class TimeRow extends Component {
     let h = 8;
     let m1,m2,h2,tstart,tend;
     for(let i=1;i<=15;i++){
+      //format hhmm string
       m1 = i%2===0? '30':'00';
       tstart= h<10?`0${h}${m1}`:`${h}${m1}`;
 
