@@ -29,9 +29,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //Routes
-app.get('/',(req,res) => {
-  return res.send('Hello backend');
-});
 
 //register route
 app.post('/register',(req,res) => {
