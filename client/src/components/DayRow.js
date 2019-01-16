@@ -67,7 +67,7 @@ class DayRow extends Component {
     if(this.props.courses.length === 0) return null;
     return (
       <div className="sixteen column row">
-        <div className="center aligned column">{this.props.day.charAt(0).toUpperCase()+this.props.day.slice(1)}</div>
+        <div className="center aligned black column">{this.props.day.charAt(0).toUpperCase()+this.props.day.slice(1)}</div>
         {this.renderColumn()}
       </div>
     );
