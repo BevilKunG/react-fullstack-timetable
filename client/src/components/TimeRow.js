@@ -31,14 +31,14 @@ class TimeRow extends Component {
   }
 
   renderColumn(){
-    return this.props.durations.map(duration => <div className="column" key={duration.start}>{`${duration.start}-${duration.end}`}</div>)
+    return this.props.durations.map(duration => <div className="center aligned black column" key={duration.start}>{`${duration.start}-${duration.end}`}</div>)
   }
 
   render(){
     // console.log(this.props.durations);
     return (
       <div className="sixteen column row">
-        <div className="column">2/61</div>
+        <div className="center aligned black column">2/61</div>
         {this.renderColumn()}
       </div>
     );
