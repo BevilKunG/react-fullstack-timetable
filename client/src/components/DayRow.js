@@ -52,7 +52,7 @@ class DayRow extends Component {
       return (
         <>
         {gridSpace!==''?<div className={`${gridSpace} wide column`}></div>:null}
-        <div className={`center aligned ${gridSize} wide column`}  key={course._id} style={{backgroundColor:'orange',border:'1px solid black'}}>
+        <div className={`center aligned ${gridSize} wide column`}  key={course._id} style={{backgroundColor:course.color,border:'1px solid black'}}>
             <h3>{course.name}</h3>
             <h5>{course.place}</h5>
             <h5>{course.instructor}</h5>
@@ -67,7 +67,7 @@ class DayRow extends Component {
     if(this.props.courses.length === 0) return null;
     return (
       <div className="sixteen column row">
-        <div className="center aligned black column">{this.props.day.charAt(0).toUpperCase()+this.props.day.slice(1)}</div>
+        <div className="center aligned black column">{this.props.day.split('').splice(0,3).join('').toUpperCase()}</div>
         {this.renderColumn()}
       </div>
     );

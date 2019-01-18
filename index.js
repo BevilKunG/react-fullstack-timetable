@@ -78,6 +78,10 @@ app.post('/courses',(req,res) => {
   const time2 = req.body.timeEnd
   const timeEnd = time2.split('').splice(0,2).join('') + time2.split('').splice(3,2).join('');
 
+  //Random Course Color
+  let cssHSL = "hsl(" + 360 * Math.random() + ',' +
+                 (25 + 70 * Math.random()) + '%,' +
+                 (85 + 10 * Math.random()) + '%)';
 
   const newCourse = new Course({
     name:req.body.name,
@@ -86,6 +90,7 @@ app.post('/courses',(req,res) => {
     days:days,
     place:req.body.place,
     instructor:req.body.instructor,
+    color:cssHSL,
     author:req.user
   });
   newCourse.save();

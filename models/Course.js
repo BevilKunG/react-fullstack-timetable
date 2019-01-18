@@ -8,6 +8,7 @@ const courseSchema = new Schema({
   days:[String],
   place:String,
   instructor:String,
+  color:String,
   author: {
     type:Schema.Types.ObjectId,
     ref:"users"

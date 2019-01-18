@@ -1,0 +1,14 @@
+div.sixteen.column.row{
+  padding: 0;
+}
+
+div.ui.grid.timetable{
+  margin: 10px;
+}
+
+.ui.grid>.row>.black.column{
+    margin-top: 0;
+     margin-bottom: 0;
+     padding-top: 0;
+     padding-bottom: 0;
+}
