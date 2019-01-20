@@ -81,21 +81,36 @@ class Timetable extends Component {
     );
   }
 
+  checkUserRenderPage(){
+    switch(this.props.auth){
+      case null:
+        return;
+      case '':
+        return;
+      default:
+        return (
+          <>
+          <h2>Timetable Page</h2>
+          {this.renderTimetable()}
+          <Link className="ui right floated button" to="/courses/new">Add Course</Link>
+          </>
+      );
+    }
+  }
+
   render(){
     // console.log(this.props.courses);
-    this.classifyDay()
+    this.classifyDay();
     return (
       <div>
-        <h2>Timetable Page</h2>
-        {this.renderTimetable()}
-        <Link className="ui right floated button" to="/courses/new">Add Course</Link>
+        {this.checkUserRenderPage()}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ courses }) => {
-  return {courses};
+const mapStateToProps = ({ auth,courses }) => {
+  return {auth,courses};
 }
 
 export default connect(mapStateToProps,{fetchCourses})(Timetable);
