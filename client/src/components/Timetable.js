@@ -90,7 +90,6 @@ class Timetable extends Component {
       default:
         return (
           <>
-          <h2>Timetable Page</h2>
           {this.renderTimetable()}
           <Link className="ui right floated button" to="/courses/new">Add Course</Link>
           </>

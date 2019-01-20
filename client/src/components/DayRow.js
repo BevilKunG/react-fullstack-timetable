@@ -53,9 +53,9 @@ class DayRow extends Component {
         <>
         {gridSpace!==''?<div className={`${gridSpace} wide column`}></div>:null}
         <div className={`center aligned ${gridSize} wide column`}  key={course._id} style={{backgroundColor:course.color}}>
-            <h3>{course.name}</h3>
-            <h5>{course.place}</h5>
-            <h5>{course.instructor}</h5>
+            <h3>{course.name.toUpperCase()}</h3>
+            <h5>{course.place.toUpperCase()}</h5>
+            <h5>{course.instructor.toUpperCase()}</h5>
             </div>
         </>
       );
