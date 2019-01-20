@@ -52,7 +52,7 @@ class DayRow extends Component {
       return (
         <>
         {gridSpace!==''?<div className={`${gridSpace} wide column`}></div>:null}
-        <div className={`center aligned ${gridSize} wide column`}  key={course._id} style={{backgroundColor:course.color,border:'1px solid black'}}>
+        <div className={`center aligned ${gridSize} wide column`}  key={course._id} style={{backgroundColor:course.color}}>
             <h3>{course.name}</h3>
             <h5>{course.place}</h5>
             <h5>{course.instructor}</h5>
