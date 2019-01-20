@@ -15,7 +15,7 @@ class DayRow extends Component {
       case 9: return 'nine';
       case 10: return 'ten';
       case 11: return 'eleven';
-      case 12: return 'twenty';
+      case 12: return 'twelve';
       case 13: return 'thirteen';
       case 14: return 'fourteen';
       case 15: return 'fifteen';
@@ -29,9 +29,9 @@ class DayRow extends Component {
       //calculate grid size of course
       let gridUse=0;
       let hstart = parseInt(course.timeStart.split('').splice(0,2).join(''));
-      let mstart = parseInt(course.timeStart.split('').splice(3,2).join(''));
+      let mstart = parseInt(course.timeStart.split('').splice(2,2).join(''));
       let hend = parseInt(course.timeEnd.split('').splice(0,2).join(''));
-      let mend = parseInt(course.timeEnd.split('').splice(3,2).join(''));
+      let mend = parseInt(course.timeEnd.split('').splice(2,2).join(''));
       if(hend>hstart){
           gridUse+=(hend-hstart)*2;
       }
@@ -41,7 +41,7 @@ class DayRow extends Component {
       //calculate grid size of space
        gridUse=0;
       let hcd = parseInt(currentDuration.split('').splice(0,2).join(''));
-      let mcd = parseInt(currentDuration.split('').splice(3,2).join(''));
+      let mcd = parseInt(currentDuration.split('').splice(2,2).join(''));
       if(hstart>hcd){
         gridUse+=(hstart-hcd)*2;
       }
