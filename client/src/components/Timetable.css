@@ -1,6 +1,6 @@
 div.sixteen.column.row{
   padding: 0;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 div.ui.grid.container.timetable{
@@ -10,7 +10,6 @@ div.ui.grid.container.timetable{
 div.center.aligned.wide.column{
   height: 128px;
 }
-
 
 .ui.grid>.row>.black.column{
     margin-top: 0;
