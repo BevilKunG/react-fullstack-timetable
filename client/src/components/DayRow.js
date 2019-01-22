@@ -52,11 +52,12 @@ class DayRow extends Component {
       return (
         <>
         {gridSpace!==''?<div className={`${gridSpace} wide column`}></div>:null}
-        <div className={`center aligned ${gridSize} wide column`}  key={course._id} style={{backgroundColor:course.color}}>
-            <h3>{course.name.toUpperCase()}</h3>
-            <h5>{course.place.toUpperCase()}</h5>
-            <h5>{course.instructor.toUpperCase()}</h5>
-            </div>
+          <div className={`center aligned ${gridSize} wide column`}  key={course._id} style={{backgroundColor:course.color}}>
+              <div>
+                <h3>{course.name.toUpperCase()}</h3>
+                <h5>{course.place.toUpperCase()}</h5>
+              </div>
+          </div>
         </>
       );
     });

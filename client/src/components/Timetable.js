@@ -68,7 +68,7 @@ class Timetable extends Component {
 
   renderTimetable(){
     return (
-      <div className="ui grid timetable">
+      <div className="ui grid container timetable">
         <TimeRow />
         <DayRow courses={this.sunday} day="sunday"/>
         <DayRow courses={this.monday} day="monday"/>

@@ -3,8 +3,12 @@ div.sixteen.column.row{
   /* border: 1px solid grey; */
 }
 
-div.ui.grid.timetable{
+div.ui.grid.container.timetable{
   margin: 10px;
+}
+
+div.center.aligned.wide.column{
+  height: 128px;
 }
 
 .ui.grid>.row>.black.column{
