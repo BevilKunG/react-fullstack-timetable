@@ -40,7 +40,7 @@ class Header extends Component {
   render(){
     // console.log(this.props.auth);
     return (
-      <div className="ui menu">
+      <div className="ui inverted borderless menu">
         <Link className="item" to="/">Home</Link>
         {this.renderLeftButton()}
         {this.renderRightButton()}
