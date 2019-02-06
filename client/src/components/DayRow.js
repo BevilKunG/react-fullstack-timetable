@@ -19,6 +19,16 @@ class DayRow extends Component {
       case 13: return 'thirteen';
       case 14: return 'fourteen';
       case 15: return 'fifteen';
+      case 16: return 'sixteen';
+      case 17: return 17;
+      case 18: return 18;
+      case 19: return 19;
+      case 20: return 20;
+      case 21: return 21;
+      case 22: return 22;
+      case 23: return 23;
+      case 24: return 24;
+      case 25: return 25;
       default: return '';
     }
   }
@@ -48,10 +58,14 @@ class DayRow extends Component {
       if(mcd!==mstart) gridUse+= mstart>mcd? 1:-1;
       const gridSpace = this.gridSizeStyle(gridUse);
       currentDuration=course.timeEnd;
-
+      const loopedDiv = [];
+      for(let i=1;i<=gridSpace;i++){
+        loopedDiv.push(<div className="one wide column"></div>);
+      }
       return (
         <>
-        {gridSpace!==''?<div className={`${gridSpace} wide column`}></div>:null}
+        {gridSpace!==''&& typeof gridSpace === 'string'?<div className={`${gridSpace} wide column`}></div>:null}
+        {typeof gridSpace === 'number'?loopedDiv:null}
           <div className={`center aligned ${gridSize} wide column`}  key={course._id} style={{backgroundColor:course.color}}>
               <div>
                 <h3>{course.name.toUpperCase()}</h3>
@@ -67,7 +81,7 @@ class DayRow extends Component {
     // console.log(this.props);
     if(this.props.courses.length === 0) return null;
     return (
-      <div className="sixteen column row">
+      <div className="row">
         <div className="center aligned black column">{this.props.day.split('').splice(0,3).join('').toUpperCase()}</div>
         {this.renderColumn()}
       </div>
